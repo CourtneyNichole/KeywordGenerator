@@ -191,47 +191,48 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(-
 
 <script>
 /* ---------- data ---------- */
-/* alt = other names shoppers use for the same product */
+/* alt = other names and broad terms shoppers use for the same product (each is its own search angle)
+   at  = materials, features and sizes shoppers add in front of the product name */
 const TYPES = {
-  pod: { label:'Print on demand', hint:'Shirts, mugs, tumblers, ornaments, prints', products:[
-    {id:'shirt',label:'T-shirt',n:'shirt',alt:['t-shirt','tee','graphic tee','tshirt','unisex shirt','oversized tee','short sleeve shirt'],gift:true},
-    {id:'sweatshirt',label:'Sweatshirt',n:'sweatshirt',alt:['crewneck sweatshirt','crewneck','pullover','oversized sweatshirt','hoodie','cozy sweatshirt'],gift:true},
-    {id:'mug',label:'Mug',n:'mug',alt:['coffee mug','coffee cup','tea cup','ceramic mug','11 oz mug','15 oz mug'],gift:true},
-    {id:'tumbler',label:'Tumbler',n:'tumbler',alt:['travel tumbler','tumbler cup','insulated tumbler','tumbler with straw','skinny tumbler','20 oz tumbler','travel mug'],gift:true},
-    {id:'tote',label:'Tote bag',n:'tote bag',alt:['canvas tote','tote','canvas bag','book bag','market tote','beach bag','shopping bag'],gift:true},
-    {id:'ornament',label:'Ornament',n:'ornament',alt:['keepsake ornament','christmas ornament','tree ornament','ceramic ornament','acrylic ornament','hanging ornament'],gift:true},
-    {id:'print',label:'Wall art print',n:'wall art',alt:['art print','poster','wall decor','framed print','canvas print','wall hanging'],gift:true},
-    {id:'dish',label:'Jewelry dish',n:'jewelry dish',alt:['ring dish','trinket dish','trinket tray','ring holder','jewelry plate','jewelry tray','catchall dish','key dish','vanity tray'],gift:true}
+  pod: { label:'Print on demand', hint:'Shirts, mugs, tumblers, ornaments, prints', at:['cute','unique','aesthetic'], products:[
+    {id:'shirt',label:'T-shirt',n:'shirt',alt:['t-shirt','tee','graphic tee','tshirt','unisex shirt','oversized tee','short sleeve shirt','crew neck tee','womens shirt','cotton tee','top','tee shirt','casual shirt','statement shirt','gift shirt','fun tee','trendy shirt','comfy tee'],at:['soft','cotton','unisex','oversized','relaxed fit','plus size'],gift:true},
+    {id:'sweatshirt',label:'Sweatshirt',n:'sweatshirt',alt:['crewneck sweatshirt','crewneck','pullover','oversized sweatshirt','hoodie','hooded sweatshirt','sweater','jumper','fleece pullover','womens sweatshirt','lounge sweatshirt','cozy pullover','winter sweatshirt','crew sweatshirt','comfy sweatshirt','graphic sweatshirt','fall sweatshirt'],at:['cozy','oversized','fleece','unisex','warm','plus size'],gift:true},
+    {id:'mug',label:'Mug',n:'mug',alt:['coffee mug','coffee cup','tea cup','ceramic mug','11 oz mug','15 oz mug','latte mug','camp mug','enamel mug','tea mug','cocoa mug','morning mug','cup','novelty mug','gift mug','office mug','big mug','drinkware'],at:['ceramic','large','cute','two tone','dishwasher safe'],gift:true},
+    {id:'tumbler',label:'Tumbler',n:'tumbler',alt:['travel tumbler','tumbler cup','insulated tumbler','tumbler with straw','skinny tumbler','20 oz tumbler','40 oz tumbler','travel mug','water bottle','iced coffee cup','cup with lid','stainless steel tumbler','drink tumbler','cold cup','tumbler gift','car cup','drinkware'],at:['insulated','stainless steel','reusable','leak proof','large'],gift:true},
+    {id:'tote',label:'Tote bag',n:'tote bag',alt:['tote','canvas tote','canvas bag','fabric bag','shopping bag','grocery bag','beach bag','book bag','market tote','reusable bag','library bag','shoulder bag','carryall','cotton tote','eco bag','school bag','travel bag'],at:['canvas','cotton','reusable','eco friendly','large','sturdy'],gift:true},
+    {id:'ornament',label:'Ornament',n:'ornament',alt:['keepsake ornament','christmas ornament','tree ornament','ceramic ornament','acrylic ornament','hanging ornament','holiday ornament','christmas decor','tree decoration','xmas ornament','bauble','stocking stuffer','christmas keepsake','holiday decor','ornament gift','stocking gift'],at:['keepsake','ceramic','acrylic','dated','round'],gift:true},
+    {id:'print',label:'Wall art print',n:'wall art',alt:['art print','poster','wall decor','framed print','canvas print','wall hanging','home decor','artwork','living room art','bedroom decor','gallery wall art','office decor','kitchen art','wall print','room decor','nursery decor','hallway art'],at:['framed','large','modern','colorful'],gift:true},
+    {id:'dish',label:'Jewelry dish',n:'jewelry dish',alt:['ring dish','trinket dish','trinket tray','ring holder','jewelry plate','jewelry tray','catchall dish','key dish','vanity tray','jewelry holder','trinket bowl','earring dish','coin dish','ceramic dish','ring tray','jewelry bowl','nightstand dish'],at:['ceramic','small','round','porcelain'],gift:true}
   ]},
-  digital: { label:'Digital downloads', hint:'Canva templates, printables, PNG and SVG files', products:[
-    {id:'invite',label:'Invitation template',n:'invitation',alt:['invitation template','digital invitation','editable invitation','printable invitation','invite','party invitation','evite'],gift:false,editable:true},
-    {id:'printart',label:'Printable wall art',n:'printable wall art',alt:['digital print','printable art','downloadable print','printable poster','instant download art'],gift:true},
-    {id:'planner',label:'Planner or tracker',n:'printable planner',alt:['digital planner','planner printable','habit tracker','printable tracker','weekly planner','daily planner','planner insert'],gift:false},
-    {id:'png',label:'PNG or sublimation design',n:'png',alt:['sublimation design','shirt design png','sublimation png','png file','clipart','dtf design'],gift:false},
-    {id:'svg',label:'SVG cut file',n:'svg',alt:['svg cut file','svg file','cut file','svg design','layered svg','vinyl decal svg'],gift:false},
-    {id:'social',label:'Social media templates',n:'instagram templates',alt:['social media templates','instagram post template','instagram story template','social media kit','content templates'],gift:false,editable:true},
-    {id:'sign',label:'Party sign or printable',n:'sign template',alt:['printable sign','party sign','welcome sign','table sign','editable sign'],gift:false,editable:true},
-    {id:'worksheet',label:'Worksheet or activity',n:'printable worksheet',alt:['activity pages','printable activity','learning printable','homeschool printable','printable game','coloring pages'],gift:false}
+  digital: { label:'Digital downloads', hint:'Canva templates, printables, PNG and SVG files', at:['printable','instant download','digital'], products:[
+    {id:'invite',label:'Invitation template',n:'invitation',alt:['invitation template','digital invitation','editable invitation','printable invitation','invite','party invitation','evite','invitation card','e invite','text invitation','phone invitation','invite template','invitation download','printable invite','editable invite','invitation printable'],at:['editable','printable','instant download','canva','digital'],gift:false,editable:true},
+    {id:'printart',label:'Printable wall art',n:'printable wall art',alt:['digital print','printable art','downloadable print','printable poster','instant download art','digital download','printable wall decor','digital art print','gallery wall printable','wall art download','printable decor','home decor printable','art download','digital wall art','printable gallery wall','poster download'],at:['printable','downloadable','digital','large'],gift:true},
+    {id:'planner',label:'Planner or tracker',n:'printable planner',alt:['digital planner','planner printable','habit tracker','printable tracker','weekly planner','daily planner','planner insert','goal planner','budget planner','monthly planner','to do list','schedule template','journal printable','printable journal','productivity planner','life planner'],at:['printable','digital','undated','editable','minimal'],gift:false},
+    {id:'png',label:'PNG or sublimation design',n:'png',alt:['sublimation design','shirt design png','sublimation png','png file','clipart','dtf design','digital design','t shirt png','transparent png','png bundle','graphic design file','png design','digital png','shirt graphic','sublimation file','png clipart'],at:['transparent','high resolution','sublimation','digital','commercial use'],gift:false},
+    {id:'svg',label:'SVG cut file',n:'svg',alt:['svg cut file','svg file','cut file','svg design','layered svg','vinyl decal svg','dxf file','svg bundle','laser cut file','sticker svg','silhouette file','svg png bundle','cut file bundle','svg clipart','vinyl cut file','htv design'],at:['layered','commercial use','digital','instant download'],gift:false},
+    {id:'social',label:'Social media templates',n:'instagram templates',alt:['social media templates','instagram post template','instagram story template','social media kit','content templates','canva templates','small business templates','engagement posts','reel cover templates','post templates','instagram post','canva social media','social media posts','business templates','story templates','instagram feed'],at:['editable','canva','customizable','branded'],gift:false,editable:true},
+    {id:'sign',label:'Party sign or printable',n:'sign template',alt:['printable sign','party sign','welcome sign','table sign','editable sign','event sign','decor sign','door sign','menu sign','favor tag','party printable','welcome board','sign printable','event signage','party decor sign','editable welcome sign'],at:['editable','printable','instant download'],gift:false,editable:true},
+    {id:'worksheet',label:'Worksheet or activity',n:'printable worksheet',alt:['activity pages','printable activity','learning printable','homeschool printable','printable game','coloring pages','busy book','workbook','kids activity','flash cards','printable puzzle','lesson printable','printable workbook','learning activity','activity sheets','educational printable'],at:['printable','educational','preschool','instant download'],gift:false}
   ]},
-  handmade: { label:'Handmade', hint:'Jewelry, candles, cards, decor, party goods', products:[
-    {id:'necklace',label:'Necklace',n:'necklace',alt:['pendant necklace','dainty necklace','charm necklace','chain necklace','layering necklace','necklace for women'],gift:true},
-    {id:'bracelet',label:'Bracelet',n:'bracelet',alt:['beaded bracelet','charm bracelet','stacking bracelet','bangle','bracelet stack','friendship bracelet'],gift:true},
-    {id:'earrings',label:'Earrings',n:'earrings',alt:['dangle earrings','stud earrings','drop earrings','hoop earrings','statement earrings','dainty earrings'],gift:true},
-    {id:'candle',label:'Candle',n:'candle',alt:['soy candle','scented candle','jar candle','hand poured candle','wood wick candle','candle gift'],gift:true},
-    {id:'card',label:'Greeting card',n:'card',alt:['greeting card','handmade card','blank card','note card','handmade greeting card','card and envelope'],gift:true},
-    {id:'woodsign',label:'Home decor sign',n:'wood sign',alt:['home decor sign','wooden sign','rustic sign','wall sign','farmhouse sign','door hanger'],gift:true},
-    {id:'keychain',label:'Keychain',n:'keychain',alt:['key ring','key chain','bag charm','acrylic keychain','car keychain','keychain gift'],gift:true},
-    {id:'garland',label:'Party garland or banner',n:'garland',alt:['party banner','party decor','paper garland','banner','bunting','party backdrop'],gift:false}
+  handmade: { label:'Handmade', hint:'Jewelry, candles, cards, decor, party goods', at:['handmade','unique','one of a kind'], products:[
+    {id:'necklace',label:'Necklace',n:'necklace',alt:['pendant necklace','dainty necklace','charm necklace','chain necklace','layering necklace','necklace for women','choker','gold necklace','silver necklace','birthstone necklace','initial necklace','locket','jewelry gift','pendant','charm pendant','everyday necklace'],at:['dainty','gold filled','sterling silver','delicate','adjustable'],gift:true},
+    {id:'bracelet',label:'Bracelet',n:'bracelet',alt:['beaded bracelet','charm bracelet','stacking bracelet','bangle','bracelet stack','friendship bracelet','cuff bracelet','chain bracelet','gemstone bracelet','bracelet set','jewelry gift','stackable bracelet','wrist bracelet','bead bracelet','everyday bracelet','arm candy'],at:['beaded','adjustable','dainty','gold filled','stretch'],gift:true},
+    {id:'earrings',label:'Earrings',n:'earrings',alt:['dangle earrings','stud earrings','drop earrings','hoop earrings','statement earrings','dainty earrings','clip on earrings','huggie earrings','earring set','jewelry gift','ear jewelry','everyday earrings','gold earrings','silver earrings','earring gift','dangles'],at:['lightweight','hypoallergenic','gold','silver','handmade'],gift:true},
+    {id:'candle',label:'Candle',n:'candle',alt:['soy candle','scented candle','jar candle','hand poured candle','wood wick candle','candle gift','aromatherapy candle','home fragrance','container candle','tin candle','pillar candle','candle jar','home scent','votive candle','gift candle','luxury candle'],at:['scented','soy','hand poured','natural','long burning'],gift:true},
+    {id:'card',label:'Greeting card',n:'card',alt:['greeting card','handmade card','blank card','note card','card and envelope','folded card','letterpress card','stationery','card for her','keepsake card','note cards','mini card','card set','folded note card','art card','greeting'],at:['blank inside','handmade','recycled','illustrated'],gift:true},
+    {id:'woodsign',label:'Home decor sign',n:'wood sign',alt:['home decor sign','wooden sign','rustic sign','wall sign','farmhouse sign','door hanger','wood decor','porch sign','hanging sign','plaque','front door sign','wall decor','wood plaque','wall plaque','entryway sign','home sign'],at:['rustic','wooden','hand painted','engraved'],gift:true},
+    {id:'keychain',label:'Keychain',n:'keychain',alt:['key ring','key chain','bag charm','acrylic keychain','car keychain','keychain gift','key fob','purse charm','car accessory','backpack charm','keyring','key holder','keychain charm','zipper pull','key accessory','bag accessory'],at:['acrylic','leather','cute','small'],gift:true},
+    {id:'garland',label:'Party garland or banner',n:'garland',alt:['party banner','party decor','paper garland','banner','bunting','party backdrop','party decorations','hanging decor','streamer','felt garland','backdrop decor','party garland','wall garland','hanging banner','decor garland','celebration banner'],at:['paper','felt','handmade','colorful'],gift:false}
   ]},
-  vintage: { label:'Vintage or craft supplies', hint:'Collectibles, vintage finds, beads, fabric', products:[
-    {id:'glass',label:'Vintage glassware',n:'vintage glassware',alt:['retro glasses','vintage glasses','vintage barware','depression glass','vintage drinking glasses','mid century glassware'],gift:true},
-    {id:'vdecor',label:'Vintage home decor',n:'vintage decor',alt:['retro home decor','vintage home decor','antique decor','mid century decor','vintage wall decor','vintage kitchen decor'],gift:true},
-    {id:'collect',label:'Vintage collectible',n:'vintage collectible',alt:['antique','vintage find','collectible','retro collectible','vintage gift','antique collectible'],gift:true},
-    {id:'vclothes',label:'Vintage clothing',n:'vintage clothing',alt:['retro clothing','vintage dress','vintage jacket','vintage tee','90s clothing','70s clothing','80s clothing'],gift:true},
-    {id:'beads',label:'Beads',n:'beads',alt:['jewelry making supplies','glass beads','seed beads','bead bundle','beading supplies','bracelet beads'],gift:false},
-    {id:'fabric',label:'Fabric',n:'fabric',alt:['quilting fabric','cotton fabric','fabric by the yard','fat quarter','fabric bundle','sewing fabric'],gift:false},
-    {id:'charms',label:'Charms',n:'charms',alt:['jewelry charms','pendant charms','charm bundle','bracelet charms','necklace charms','enamel charms'],gift:false},
-    {id:'paper',label:'Paper and cardstock',n:'scrapbook paper',alt:['craft paper','cardstock','paper pack','patterned paper','junk journal paper','scrapbook paper pack'],gift:false}
+  vintage: { label:'Vintage or craft supplies', hint:'Collectibles, vintage finds, beads, fabric', at:['vintage','retro','antique'], products:[
+    {id:'glass',label:'Vintage glassware',n:'vintage glassware',alt:['retro glasses','vintage glasses','vintage barware','depression glass','vintage drinking glasses','mid century glassware','cocktail glasses','wine glasses','glass tumblers','vintage cups','highball glasses','vintage glass','barware','drinking glasses','glassware set','retro drinkware'],at:['antique','retro','set of 4','colored'],gift:true},
+    {id:'vdecor',label:'Vintage home decor',n:'vintage decor',alt:['retro home decor','vintage home decor','antique decor','mid century decor','vintage wall decor','vintage kitchen decor','vintage vase','shelf decor','retro decor','cottage decor','antique home decor','retro wall decor','vintage accent','vintage display','farmhouse decor','vintage shelf decor'],at:['antique','retro','rustic','mid century'],gift:true},
+    {id:'collect',label:'Vintage collectible',n:'vintage collectible',alt:['antique','vintage find','collectible','retro collectible','vintage gift','antique collectible','rare find','vintage treasure','collector item','nostalgic gift','antique find','vintage keepsake','collectable','vintage item','retro find','vintage piece'],at:['rare','antique','retro'],gift:true},
+    {id:'vclothes',label:'Vintage clothing',n:'vintage clothing',alt:['retro clothing','vintage dress','vintage jacket','vintage tee','90s clothing','70s clothing','80s clothing','thrifted clothing','secondhand clothing','vintage fashion','y2k clothing','vintage top','retro dress','vintage outfit','vintage clothes','retro jacket'],at:['retro','thrifted','secondhand'],gift:true},
+    {id:'beads',label:'Beads',n:'beads',alt:['jewelry making supplies','glass beads','seed beads','bead bundle','beading supplies','bracelet beads','clay beads','craft beads','bead kit','loose beads','spacer beads','wood beads','beading kit','beads for jewelry','glass bead mix','bead supplies'],at:['bulk','assorted','colorful','small'],gift:false},
+    {id:'fabric',label:'Fabric',n:'fabric',alt:['quilting fabric','cotton fabric','fabric by the yard','fat quarter','fabric bundle','sewing fabric','quilt fabric','craft fabric','fabric scraps','apparel fabric','linen fabric','cotton print fabric','fabric yardage','fabric remnant','sewing material','home decor fabric'],at:['cotton','linen','printed','precut'],gift:false},
+    {id:'charms',label:'Charms',n:'charms',alt:['jewelry charms','pendant charms','charm bundle','bracelet charms','necklace charms','enamel charms','charm pack','earring charms','bulk charms','charm set','dangle charms','charms for bracelets','jewelry pendant','craft charms','mini charms','pendant'],at:['enamel','gold','silver','bulk'],gift:false},
+    {id:'paper',label:'Paper and cardstock',n:'scrapbook paper',alt:['craft paper','cardstock','paper pack','patterned paper','junk journal paper','scrapbook paper pack','scrapbooking supplies','decorative paper','journal kit','ephemera','paper kit','scrapbook kit','journal paper','craft cardstock','paper crafts','stationery paper'],at:['patterned','printable','decorative'],gift:false}
   ]}
 };
 /* adjV = how the recipient sits in front of a product ("nurse mug"); giftV = how it reads after "gift for" */
@@ -380,7 +381,9 @@ function spec(p){
 }
 
 /* ---------- phrase builder (Courtney's method: buyer + moment + product, then test) ---------- */
-const MIN_PHRASES = 50, TARGET = 64, START_PER_GROUP = 6;
+const MIN_PHRASES = 50, TARGET = 70;
+const WORD_CAP = 3;                       // no word (and no product name) appears more than 3 times in a list
+const FILLER = new Set(['for','with','and','the','of','a','an','to','in','on','my','your','oz']);
 function themeVariants(T){
   if (!T) return [];
   const key = THEMES[T] ? T : THEME_ALIAS[T];
@@ -390,8 +393,9 @@ function themeVariants(T){
 function build(ans){
   const saved = A; A = ans;
   const P = product(); A = saved;
-  const N = P.n, alt = (P.alt||[]).slice(), gift = P.gift, custom = ans.product==='custom';
-  const NV = [N].concat(alt);
+  const N = P.n, gift = P.gift;
+  const NV = [N].concat((P.alt||[]).filter(x=>x!==N));          // every name for the product
+  const AT = (P.at||[]).concat(TYPES[ans.type].at||[]);
   const R = ans.recipients.map(id => RECIPIENTS.find(r=>r.id===id));
   const M = ans.moments.map(id => MOMENTS.find(m=>m.id===id));
   const S = ans.styles.map(id => STYLES.find(s=>s.id===id));
@@ -400,9 +404,19 @@ function build(ans){
   const TV = themeVariants(T);
   const others = R.filter(r=>r.id!=='self');
   const self = R.some(r=>r.id==='self');
-  const r0 = others[0];
   const funny = S.some(s=>s.id==='funny');
   const dated = M.filter(m=>m.adj);
+  const L = NV.length;
+  const nv = i => NV[((i % L) + L) % L];                         // rotate through product names
+
+  /* product names are counted as whole terms, longest first, so "tote bag" and "beach bag" are separate angles */
+  const terms = NV.slice().sort((a,b)=>b.length-a.length);
+  function tokens(p){
+    let s = ' '+p+' '; const out = [];
+    for (const t of terms){ const k=' '+t+' '; while (s.includes(k)){ out.push('§'+t); s = s.replace(k,' '); } }
+    s.trim().split(/\s+/).filter(Boolean).forEach(w=>{ if (!FILLER.has(w)) out.push(singular(w)); });
+    return out;
+  }
 
   const groups = [];
   function group(key,title,desc,fn){
@@ -410,100 +424,92 @@ function build(ans){
     const add = (...parts) => {
       const p = parts.filter(Boolean).join(' ').replace(/\s+/g,' ').trim();
       if (!p || local.has(p) || p.split(' ').length>7) return;
-      const w = p.split(' ').filter(x=>x.length>2 && x!=='for');
-      if (new Set(w).size !== w.length) return;           // no repeated words ("floral floral mug")
+      if (p.split(' ').length<2) return;                    // no one-word phrases: they're too broad to rank for
+      const w = p.split(' ').filter(x=>!FILLER.has(x)).map(singular);
+      if (new Set(w).size !== w.length) return;             // no repeated word inside one phrase
       local.add(p); pool.push(p);
     };
     fn(add);
     if (pool.length) groups.push({key,title,desc,pool,items:[]});
   }
 
-  group('buyer','Who it’s for','The person she’s shopping for. Gift buyers often type the recipient first.', add=>{
-    others.forEach(r=>{ if (gift) add('gift for',r.giftV[0]); add(r.adjV[0],N); });
-    others.forEach(r=>{ r.adjV.forEach(a=>alt.slice(0,3).forEach(nv=>add(a,nv))); });
-    if (gift) others.forEach(r=>{ r.giftV.forEach(g=>add('gift for',g)); r.giftV.slice(0,2).forEach(g=>add(N,'for',g)); });
-    others.forEach(r=>r.adjV.forEach(a=>add(a,N)));
-    if (gift && T) others.forEach(r=>{ add(T,'gift for',r.giftV[0]); TV.slice(1,3).forEach(tv=>add(tv,'gift for',r.giftV[0])); });
-    if (funny) others.forEach(r=>{ add('funny',r.adjV[0],N); if (gift) add('funny gift for',r.giftV[0]); });
-    if (!gift) others.forEach(r=>dated.forEach(m=>add(r.adjV[0],m.adj,N)));
-    if (self){ add(N,'for women'); add(N,'for her'); alt.slice(0,3).forEach(nv=>{ add(nv,'for women'); add(nv,'for her'); }); add('treat yourself',N); }
+  /* every descriptor is offered with every product name, in rotation, so the cap can pick the freshest pairing */
+  const cross = (list, make, start=0) => { for (let r=0;r<L;r++) list.forEach((d,i)=>make(d, nv(start+i+r))); };
+
+  group('format','The product itself','Every name shoppers use for this item, plus the details they add. These are your broadest search angles.', add=>{
+    NV.forEach(x=>add(x));
+    if (ans.type==='digital'){ add(N,'instant download'); if (P.editable) add('canva',N,'template'); }
+    if (gift){ add(nv(2),'gift idea'); add('unique',nv(3)); }
+    cross(AT, (a,x)=>add(a,x), 1);
+  });
+
+  if (others.length || self) group('buyer','Who it’s for','The person she’s shopping for. Gift buyers often type the recipient first.', add=>{
+    if (gift) others.forEach(r=>r.giftV.forEach(g=>add('gift for',g)));
+    if (gift && TV.length) others.forEach(r=>r.giftV.forEach((g,i)=>{ if (TV[i+1]) add(TV[i+1],'gift for',g); }));
+    if (funny) others.forEach(r=>r.adjV.forEach((a,i)=>add('funny',a,nv(i+7))));
+    others.forEach((r,ri)=>{
+      cross(r.adjV, (a,x)=>add(a,x), ri*3);
+      cross(r.giftV, (g,x)=>add(x,'for',g), ri*3+4);
+      if (!gift) dated.forEach((m,i)=>add(r.adjV[0],m.adj,nv(i+2)));
+    });
+    if (self){ add('treat yourself',nv(5)); add('self care gift'); cross(['for women','for her','for wife','for girlfriend'], (w,x)=>add(x,w), 2); }
   });
 
   if (M.length) group('moment','The moment','When she buys. One year-round moment can sell all year long.', add=>{
-    M.forEach(m=>{
-      if (!m.adj){
-        if (gift){ add('just because gift'); add('thinking of you gift'); if (r0){ add('just because gift for',r0.giftV[0]); add('thinking of you gift for',r0.giftV[0]); } add('everyday',N); }
-        else add('everyday',N);
-        return;
-      }
-      add(m.adj,N);
-      if (gift && r0) add(m.adj,'gift for',r0.giftV[0]);
-    });
-    dated.forEach(m=>alt.slice(0,4).forEach(nv=>add(m.adj,nv)));
-    if (gift){ dated.forEach(m=>{ add(m.adj,'gift'); if (r0) r0.giftV.slice(1).forEach(g=>add(m.adj,'gift for',g)); }); }
-    if (T) dated.forEach(m=>{ add(m.adj,T,N); if (gift) add(m.adj,'gift for',T,'lover'); });
-    if (!gift && ans.type==='digital') dated.forEach(m=>{ add(m.adj,N,'template'); add('printable',m.adj,N); });
-    dated.forEach(m=>alt.slice(4).forEach(nv=>add(m.adj,nv)));
+    M.forEach(m=>{ if (!m.adj){ if (gift){ add('just because gift'); add('thinking of you gift'); } } });
+    if (gift) dated.forEach(m=>{ add(m.adj,'gift'); others.forEach(r=>r.giftV.forEach(g=>add(m.adj,'gift for',g))); });
+    if (T) dated.forEach((m,i)=>add(m.adj,TV[1]||T,nv(i+9)));
+    if (!gift && ans.type==='digital') dated.forEach((m,i)=>{ add(m.adj,N,'template'); add('printable',m.adj,nv(i+2)); });
+    const words = dated.map(m=>m.adj).concat(M.some(m=>!m.adj) ? (gift ? ['everyday','little something','just because'] : ['everyday','all occasion']) : []);
+    cross(words, (w,x)=>add(w,x), 3);
   });
 
   if (T) group('theme','What it’s about','The subject on the design, plus related angles shoppers use for the same idea.', add=>{
-    TV.forEach(tv=>add(tv,N));
-    TV.slice(0,5).forEach(tv=>alt.slice(0,3).forEach(nv=>add(tv,nv)));
-    if (gift){ add(T,'lover gift'); add('gift for',T,'lover'); TV.slice(1,4).forEach(tv=>add(tv,'gift')); }
-    if (ans.type==='digital'){ add(T,N,'digital download'); add(TV[1],N,'printable'); }
-    TV.slice(5).forEach(tv=>alt.slice(0,2).forEach(nv=>add(tv,nv)));
+    if (gift) TV.forEach(tv=>{ add(tv,'gift'); add('gift for',/lover|mom|dad|lady/.test(tv)?tv:tv+' lover'); });
+    if (ans.type==='digital') add(T,N,'digital download');
+    cross(TV, (tv,x)=>add(tv,x), 0);
   });
 
   if (S.length) group('style','The look','Style words for shoppers browsing by aesthetic.', add=>{
-    S.forEach(s=>s.v.forEach(sv=>add(sv,N)));
-    S.forEach(s=>s.v.slice(0,2).forEach(sv=>alt.slice(0,3).forEach(nv=>add(sv,nv))));
-    if (T) S.forEach(s=>{ if (TV.some(tv=>s.v.includes(tv))) return; add(s.v[0],T,N); if (TV[1] && !s.v.includes(TV[1])) add(s.v[0],TV[1],N); });
-    if (gift && r0) S.forEach(s=>add(s.v[0],'gift for',r0.giftV[0]));
+    if (T) S.forEach((s,si)=>{ if (!TV.some(tv=>s.v.includes(tv))) add(s.v[0],T,nv(si+2)); });
+    if (gift) S.forEach(s=>others.forEach(r=>add(s.v[0],'gift for',r.giftV[0])));
+    cross(S.flatMap(s=>s.v), (sv,x)=>add(sv,x), 4);
   });
 
   if (ans.personalized) group('custom','Personalized','Buyers who want a name or custom detail search with these words.', add=>{
-    ['personalized','custom','custom name','monogram'].forEach(p=>add(p,N));
-    add(N,'with name');
-    alt.slice(0,3).forEach(nv=>{ add('personalized',nv); add('custom',nv); });
-    if (gift && r0) r0.giftV.forEach(g=>add('personalized gift for',g));
-    if (r0) add('personalized',r0.adjV[0],N);
-    dated.forEach(m=>add('custom',m.adj,N));
-    if (T) add('personalized',T,N);
+    others.forEach(r=>r.giftV.forEach(g=>add('personalized gift for',g)));
+    dated.forEach((m,i)=>add('custom',m.adj,nv(i+3)));
+    if (T) add('personalized',T,nv(6));
+    add(nv(1),'with name'); add(nv(4),'with initial');
+    cross(['personalized','custom','custom name','monogram','name','initial'], (p,x)=>add(p,x), 0);
   });
 
-  group('format','The product itself','Different names shoppers use for the same item. Great for filling tags.', add=>{
-    alt.forEach(nv=>add(nv));
-    if (ans.type==='digital'){
-      if (P.editable){ add('editable',N); add('canva',N,'template'); }
-      add(N,'instant download'); add(N,'digital download');
-      if (!/printable/.test(N)) add('printable',N);
-    }
-    if (ans.type==='handmade'){ add('handmade',N); alt.slice(0,3).forEach(nv=>add('handmade',nv)); }
-    if (custom || gift){ add(N,'gift'); add('unique',N); add(N,'gift idea'); }
-    if (custom){ add(N,'set'); add(N,'bundle'); add('cute',N); }
-    if (T) alt.forEach(nv=>add(T,nv));
-  });
-
-  /* fill evenly: every group shows its strongest few, then take turns until the list is full */
-  const taken = new Set();
-  const take = g => { while (g.pool.length){ const p=g.pool.shift(); if (!taken.has(p)){ taken.add(p); g.items.push(p); return true; } } return false; };
-  groups.forEach(g=>{ for (let i=0;i<START_PER_GROUP;i++) take(g); });
+  /* fill: groups take turns, and a phrase is skipped if it would push any word past the cap */
+  const count = new Map(), taken = new Set();
+  const TERM_CAP = Math.max(WORD_CAP, Math.ceil(45 / L));   // a product with only one or two names can't share it out three times
+  const fits = p => tokens(p).every(t => (count.get(t)||0) < (t[0]==='§' ? TERM_CAP : WORD_CAP));
+  const accept = (g,p) => { taken.add(p); g.items.push(p); tokens(p).forEach(t=>count.set(t,(count.get(t)||0)+1)); };
+  const take = g => { while (g.pool.length){ const p=g.pool.shift(); if (!taken.has(p) && fits(p)){ accept(g,p); return true; } } return false; };
+  /* every product name goes in on its own first: these are the broadest angles */
+  const fmt = groups.find(g=>g.key==='format');
+  if (fmt) fmt.pool.filter(p=>NV.includes(p)).forEach(p=>{ if (fits(p)) accept(fmt,p); });
   let more = true;
   while (taken.size<TARGET && more){ more=false; groups.forEach(g=>{ if (taken.size<TARGET && take(g)) more=true; }); }
 
-  /* still short? offer style words they didn't pick, clearly labelled */
+  /* still short? offer extra angles they didn't pick, clearly labelled */
   if (taken.size<MIN_PHRASES){
-    const extra = {key:'looks',title:'More looks to test',desc:'Style words you didn’t pick. Only keep the ones that truly describe your design.',items:[]};
-    const unused = STYLES.filter(s=>!ans.styles.includes(s.id));
-    outer: for (let i=0;i<3;i++) for (const nv of NV.slice(0,3)) for (const s of unused){
-      if (taken.size>=MIN_PHRASES) break outer;
-      if (i>0 && nv!==N) continue;
-      const p = (s.v[i]+' '+nv).trim();
-      if (!taken.has(p)){ taken.add(p); extra.items.push(p); }
+    const extra = {key:'looks',title:'More angles to test',desc:'Looks and details you didn’t pick. Only keep the ones that truly describe your product.',items:[]};
+    const words = STYLES.filter(s=>!ans.styles.includes(s.id)).flatMap(s=>s.v).concat(['gift','cute','unique','best']);
+    let k = 0;
+    for (const w of words){
+      if (taken.size>=MIN_PHRASES) break;
+      for (let j=0;j<L;j++){ const p = w+' '+nv(k+j); if (!taken.has(p) && fits(p)){ accept(extra,p); k++; break; } }
     }
     if (extra.items.length) groups.push(extra);
   }
 
+  const ORDER=['buyer','moment','theme','style','custom','format','looks'];
+  groups.sort((a,b)=>ORDER.indexOf(a.key)-ORDER.indexOf(b.key));
   return {groups:groups.filter(g=>g.items.length).map(({key,title,desc,items})=>({key,title,desc,items})), tm, seasonal: M.some(m=>m.seasonal), evergreen: M.some(m=>!m.seasonal), theme:T};
 }
 
